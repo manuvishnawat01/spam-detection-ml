@@ -1,8 +1,14 @@
 import streamlit as st
 import pandas as pd
+import os
 
-# Load dataset
-data = pd.read_csv("spam.csv", sep='\t', names=["label", "message"])
+# Load dataset (SAFE PATH)
+data = pd.read_csv(
+    os.path.join(os.path.dirname(__file__), "spam.csv"),
+    sep='\t',
+    names=["label", "message"]
+)
+
 data['label'] = data['label'].map({'ham': 0, 'spam': 1})
 
 X = data['message']
