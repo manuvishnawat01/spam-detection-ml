@@ -2,13 +2,14 @@ import streamlit as st
 import pandas as pd
 import os
 
-# Load dataset (SAFE PATH)
+# Load dataset (Streamlit Cloud safe path)
 data = pd.read_csv(
-    os.path.join(os.path.dirname(__file__), "spam.csv"),
+    os.path.join("SpamDetectionProject", "spam.csv"),
     sep='\t',
     names=["label", "message"]
 )
 
+# Convert labels into numbers
 data['label'] = data['label'].map({'ham': 0, 'spam': 1})
 
 X = data['message']
